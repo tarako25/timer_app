@@ -1,0 +1,334 @@
+/*基本CSS*/
+body {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color:rgb(104, 104, 104);
+    font-weight: bold;
+}
+/*Timer_app 見出し*/
+.hl{
+    font-size:1.3rem;
+    font-weight: bold;
+    padding:5px;
+}
+h1 {
+    padding: 50px;
+    font-size: 2.2rem;
+    font-weight: bold;
+}
+/*タイマーボックス*/
+.timer-box {
+    display: flex;
+    justify-content: center;
+}
+/*タイマー*/
+.time {
+    width: 500px;
+    padding: 10px;
+    margin: 30px;
+    font-size: 3.5rem;
+    border-bottom: solid 1px #ffaf47;
+}
+/*ボタンCSS*/
+.btn:hover {
+    color: white;
+    background-color: rgb(150, 150, 150);
+    transition: all 0.5s;
+}
+
+.btn-box {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-box button {
+    color: white;
+    padding: 10px 30px;
+    margin: 0 10px;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    background-color: #ffaf47;
+}
+
+.btn-box button:hover {
+    background-color: rgb(255, 133, 85);
+    transition: all 0.5s;
+}
+
+button:disabled {
+    background-color: rgb(255, 133, 85);
+}
+.buttons{
+    width:95%;
+    display: flex;
+    justify-content: end;
+    color: white;
+}
+.buttons button{
+    background-color: #ffaf47;
+    padding:10px 15px;
+    margin:0 5px;
+    border-radius: 10px;
+}
+.buttons button:hover{
+    background-color: rgb(255, 133, 85);
+     transition: all 0.5s;
+}
+/*データボックス全体*/
+.databox{
+    width:45%;
+    display: flex;
+    background: linear-gradient(to right, #ffaf47, rgb(255, 133, 85));
+    justify-content: space-around;
+    padding: 20px 0;
+    margin:40px 0;
+    border-radius: 10px;
+}
+/*データボックス左側*/
+.data{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width:45%;
+    height: 450px;
+    margin-bottom:30px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+}
+.data-sub{
+    width:100%;
+    display: flex;
+    align-items:center ;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 10px;
+    padding:15px 0;
+    margin-bottom:20px;
+    background-color: white;
+}
+/*データボックス左側のボックスの時間*/
+.sumtime{
+    width:75%;
+    background-color: white;
+    padding:10px 0;
+    margin:15px 0;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    border: rgb(209, 209, 209) solid 1px;
+    font-weight: 100;
+}
+/*マイナスの場合青プラスの場合　昨日との比較*/
+.minus{
+    color:rgb(73, 73, 255)
+}
+.plus{
+    color:rgb(255, 73, 73);
+}
+/*データボックス右側*/
+.list{
+    width:45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    padding-bottom:20px;
+}
+/*データボックス右側のボックス*/
+.list-times{
+    display: flex;
+    align-items: center;
+    width:100%;
+    height: 100%;
+    flex-direction: column;
+}
+/*追加されていくリスト(1つ)*/
+.list-box{
+    background-color: rgb(255, 255, 255);
+    width:100%;
+    margin-bottom:20px;
+    padding:10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+/*追加されていくリスト(1つ)*/
+.list-time{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width:100%;
+    padding-bottom:10px;
+}
+/*追加された日*/
+.day-sub{
+    width:90%;
+    height: 100%;
+    text-align: left;
+}
+.day{
+    padding:5px;
+    font-size: 1rem;
+}
+/*input関係ないリストの中時間*/
+.inputbox{
+    width:90%;
+    padding:10px 0;
+    font-size: 1.5rem;
+    background-color: rgb(255, 255, 255);
+    border: rgb(209, 209, 209) solid 1px;
+    border-radius: 10px;
+    font-weight: 100;
+}
+/*基本モーダル(opcity0)*/
+.edit-mordal {
+    opacity: 0; /* 初期値は0にする */
+    width: 500px;
+    height: 10%;
+    background-color: rgba(255, 255, 255);
+    border: solid 1px black;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    pointer-events: none;
+  }
+  /*編集を押したときに出てくるモーダル*/
+.dis-edit-mordal{
+    opacity:1;
+    pointer-events: auto;
+    transition: all 0.25s;
+}
+/*モーダル要素inputとボタン*/
+.edit-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+}
+.edit-button button{
+    width:70px;
+    height: 50px;
+}
+/*モーダル内のinput(時間)*/
+.input-edit{
+    width:80%;
+    padding:10px;
+    height: 60px;
+    border-radius: 30px;
+    border: solid 1px rgb(150, 150, 150);
+}
+/*inputと登録ボタン*/
+.edit-button-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:70%;
+}
+/*モーダル内のアイコン処理*/
+input[type="time"]{
+    position: relative;
+    text-align: center;
+    color:black
+}
+input[type="time"]::-webkit-calendar-picker-indicator{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin:-10px;
+    opacity:0;
+}
+.s-link{
+    color: white;
+    padding: 15px 30px;
+    margin-bottom:40px;
+    border-radius: 10px;
+    background-color: rgb(255, 185, 54);
+}
+/*canvascss*/
+.canvas-box{
+    width:60%;
+    margin-bottom: 100px;
+}
+/*データ受け渡し用*/
+.none{
+    display: none;
+}
+@media screen and (max-width: 1024px) {
+    /* スタイルの指定 */
+    .time {
+        width: 330px;
+        font-size: 3.2rem;
+    }
+    .databox{
+        flex-direction: column;
+        align-items: center;
+    }
+    .data{
+        height:400px;
+    }
+    .data-sub{
+        margin:-5px 0;
+    }
+    .data{
+        width:90%;
+        margin-bottom:25px;
+    }
+    .day-sub{
+        text-align: center;
+    }
+    .list{
+        width:90%;
+    }
+    .edit-mordal {
+        width:380px;
+    }
+    .canvas-box{
+        width:70%;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    /* スタイルの指定 */
+    .hl{
+        font-size: 1.2rem;
+        padding:-10px;
+    }
+    .btn-box button {
+        padding: 10px 25px;
+        margin: 0 5px;
+        font-size: 1rem;
+    }
+    .data{
+        height:350px;
+        margin-bottom:30px;
+    }
+    .data-sub{
+        margin:-8px 0;
+    }
+    .buttons button{
+        font-size: 0.9rem;
+    }
+    .time {
+        width: 250px;
+        font-size: 2.5rem;
+    }
+    .databox{
+        width:60%;
+    }
+    .edit-mordal {
+        width:300px;
+    }
+    .canvas-box{
+        width:90%;
+    }
+  }

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="login.css" />
+  </head>
+  <body>
+    <div class="all">
+      <form action="signup" method="POST">
+        <div class="login-box">
+          <div class="login-left">
+            <h1>Sign Up</h1>
+            <div class="ID">
+              <span>アカウント名<span>
+                <p><input name="acount" type="text" /></p>
+            </div>
+            <p class="error"><%= content_error %></p>
+            <div class="PW">
+              <span>パスワード</span>
+              <p><input name="passward" type="password" /></p>
+            </div>
+            <button class="signbutton" id="signbutton">Sign Up</button>
+          </div>
+          <div class="login-right">
+            <div class="right-box">
+              <h2>Hello,Friend!</h2>
+              <h3>Enter your personal details and start journey with us</h3>
+            </div>
+        </div>
+      </form>
+    </div>
+    <script>
+    </script>
+  </body>
+</html>

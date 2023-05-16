@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Timer_app</title>
+  </head>
+  <body>
+    <h1>Timer_App</h1>
+    <div class="timer-box">
+      <div id="stopwatch" class="time">00:00:00</div>
+    </div>
+    <div class="btn-box">
+      <button id="start">開始</button>
+      <button id="stop">中断</button>
+      <form action="/" method="post">
+        <button id="reset" name="time" value="">終了</button>
+        <input type="hidden" name="day" value="" id="hidden-day" />
+      </form>
+    </div>
+    <div class="databox">
+      <div class="data">
+        <div class="data-sub">
+          <p class="hl">累計経過時間</p>
+          <p class="sumtime"><%= content_sum %></p>
+        </div>
+        <div class="data-sub">
+          <p class="hl">今日の経過時間</p>
+          <p class="sumtime"><%= content_sumtoday %></p>
+        </div>
+        <div class="data-sub">
+          <p class="hl">昨日との比較</p>
+          <p class="sumtime <%= content_diffClass %>"><%= content_diff %></p>
+        </div>
+      </div>
+      <span class="list">
+        <% content.reverse() %> <% for(let i in content) { %>
+        <ul class="list-times">
+          <div class="list-box">
+            <li class="list-time">
+              <div class="day-sub">
+                <p class="day"><%= content[i].day %></p>
+              </div>
+              <p class="inputbox"><%= content[i].time %></p>
+            </li>
+            <div class="buttons">
+              <button
+                class="edit"
+                value="<%= content[i].no %>"
+                onclick="handlEdit(this.value)"
+              >
+                編集
+              </button>
+              <div class="edit-mordal">
+                <div class="edit-button">
+                  <form action="/submit" method="post" class="edit-button-form">
+                    <input
+                      type="time"
+                      value="00:00:00"
+                      step="1"
+                      class="input-edit"
+                      name="time"
+                    />
+                    <button class="fix" type="hidden">修正</button>
+                    <input type="hidden" value="" name="no" class="editno" />
+                  </form>
+                  <button class="cancel">×</button>
+                </div>
+              </div>
+              <form action="/delete" method="post">
+                <button
+                  class="delite"
+                  id="delete"
+                  name="data"
+                  value="<%= content[i].no %>"
+                >
+                  削除
+                </button>
+              </form>
+            </div>
+          </div>
+        </ul>
+        <% } %>
+      </span>
+    </div>
+    <a href="/signin" class="s-link">ログアウトはこちら</a>
+    <div class="canvas-box">
+      <canvas id="chart" class="canvas" width="300" height="175"></canvas>
+    </div>
+    <p class="none" id="none"><%= content_canvs %></p>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1"></script>
+    <script>
+      // ストップウォッチの表示要素を取得
+      const stopwatchEl = document.getElementById("stopwatch");
+      // ボタン要素を取得
+      const startBtn = document.getElementById("start");
+      const stopBtn = document.getElementById("stop");
+      const resetBtn = document.getElementById("reset");
+
+      // ストップウォッチの時間を格納する変数
+      let startTime = 0;
+      let elapsedTime = 0;
+      let timerInterval;
+
+      //基本
+      function updateTime() {
+        const currentTime = new Date().getTime();
+        elapsedTime = currentTime - startTime;
+        const minutes = Math.floor(elapsedTime / (1000 * 60));
+        const seconds = Math.floor((elapsedTime % (1000 * 60)) / 1000);
+        const hours = Math.floor(elapsedTime / (1000 * 60 * 60));
+        const timeString = `${hours.toString().padStart(2, "0")}:${minutes
+          .toString()
+          .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+        stopwatchEl.innerHTML = timeString;
+      }
+      // ストップウォッチを開始する関数
+      function startStopwatch() {
+        stopBtn.disabled = false; //Stopボタン有効化
+        startBtn.disabled = true; // Startボタンを無効化
+        startTime = new Date().getTime() - elapsedTime;
+        timerInterval = setInterval(updateTime, 1000);
+
+        //送信する日時
+        const hidden_day = document.getElementById("hidden-day");
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = ("0" + (today.getMonth() + 1)).slice(-2); // 2桁にするために0を追加
+        const day = ("0" + today.getDate()).slice(-2); // 2桁にするために0を追加
+        const day_data = year + "/" + month + "/" + day;
+        hidden_day.value = day_data;
+      }
+
+      // ストップウォッチを停止する関数
+      function stopStopwatch() {
+        clearInterval(timerInterval);
+        stopBtn.disabled = true; //Stopボタンを無効化
+        startBtn.disabled = false; // Startボタンを有効化
+      }
+
+      // ストップウォッチをリセットする関数
+      function resetStopwatch() {
+        stopStopwatch();
+        startBtn.disabled = false;
+        stopBtn.disabled = false;
+        resetBtn.disabled = false;
+        const timeElement = stopwatchEl.innerHTML;
+        resetBtn.value = timeElement;
+
+        elapsedTime = 0;
+
+        stopwatchEl.innerHTML = "00:00:00";
+      }
+
+      // ボタンにイベントリスナーを追加
+      startBtn.addEventListener("click", startStopwatch);
+      stopBtn.addEventListener("click", stopStopwatch);
+      resetBtn.addEventListener("click", resetStopwatch);
+
+      //編集モーダル開く
+      const edit_mordal = document.querySelector(".edit-mordal");
+      const editbtn = document.querySelectorAll(".edit");
+      editbtn.forEach((editbtn) => {
+        editbtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          edit_mordal.classList.add("dis-edit-mordal");
+        });
+      });
+
+      //編集モーダルキャンセル
+      const cancelbtn = document.querySelectorAll(".cancel");
+      cancelbtn.forEach((cancelbtn) => {
+        cancelbtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          edit_mordal.classList.remove("dis-edit-mordal");
+        });
+      });
+
+      //モーダル登録(no受け渡し)
+      function handlEdit(id) {
+        const editno = document.querySelector(".editno");
+        editno.value = id;
+        console.log(editno.value);
+      }
+      //canvas処理
+
+      // 現在の年と月を取得
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = now.getMonth() + 1;
+
+      // 現在の月の日数を計算
+      const daysInMonth = new Date(year, month, 0).getDate();
+
+      // 日数を含む配列を作成
+      const none = document.getElementById("none").textContent;
+      const noneArray = none.split(",");
+      const daysArray = Array.from({ length: daysInMonth }, (_, i) => i + 1);
+      window.onload = function () {
+        let context = document.querySelector("#chart").getContext("2d");
+        new Chart(context, {
+          type: "line",
+          data: {
+            labels: daysArray,
+            datasets: [
+              {
+                label: month + "月の経過時間",
+                data: noneArray,
+                borderColor: "rgba(255,185,54,1)",
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            scales: {
+              y: {
+                min: 0,
+                max: 10,
+                ticks: {
+                  callback: function (value) {
+                    return value + "h";
+                  },
+                },
+              },
+            },
+          },
+        });
+      };
+    </script>
+  </body>
+</html>
