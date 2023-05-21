@@ -8,24 +8,26 @@ app.engine("ejs", ejs.renderFile);
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.listen(80, () => {
+app.listen(3000, () => {
   console.log("Open Server! URL:http://localhost:3000/");
 });
 
 //Mysql設定
 
 const mysql_setting = {
-  host: "localhost",
-  user: "root",
-  password: "",
+  host: "database-1.c26tz3blblk0.ap-northeast-1.rds.amazonaws.com",
+  port:"3306",
+  user:"admin",
+  password:"0423take",
   database: "stop-app-db",
 };
 const mysql_setting2 = {
-  host: "localhost",
-  user: "root",
-  password: "",
+  host: "database-1.c26tz3blblk0.ap-northeast-1.rds.amazonaws.com",
+  port:"3306",
+  user:"admin",
+  password:"0423take",
   database: "stop-app-acount",
-}
+};
 
 //グローバルID
 
