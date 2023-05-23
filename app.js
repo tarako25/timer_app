@@ -16,18 +16,18 @@ app.listen(process.env.PORT || 3000, () => {
 //Mysql設定
 
 const mysql_setting = {
-  host: process.env.HOST,
-  port:process.env.PORT,
-  user:process.env.USER,
-  password:process.env.PASSWORD,
-  database: process.env.DATABASE,
+  host: "database-1.c26tz3blblk0.ap-northeast-1.rds.amazonaws.com",
+  port:"3306",
+  user:"admin",
+  password:"0423take",
+  database: "stop-app-db",
 };
 const mysql_setting2 = {
-  host: process.env.HOST,
-  port:process.env.PORT,
-  user:process.env.USER,
-  password:process.env.PASSWORD,
-  database: process.env.DATABASE2,
+  host: "database-1.c26tz3blblk0.ap-northeast-1.rds.amazonaws.com",
+  port:"3306",
+  user:"admin",
+  password:"0423take",
+  database: "stop-app-acount",
 };
 
 //グローバルID
