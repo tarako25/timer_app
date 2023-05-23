@@ -9,7 +9,7 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 //heroku用
-app.listen(process.env.PORT || 3000, () => {
+app.listen(3000, () => {
   console.log("Open Server! URL:http://localhost:3000/");
 });
 
@@ -29,7 +29,6 @@ const mysql_setting2 = {
   password:"0423take",
   database: "stop-app-acount",
 };
-
 //グローバルID
 
 let ac;
