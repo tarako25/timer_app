@@ -201,7 +201,7 @@ app.post("/signup",(req,res)=>{
       res.render("signup.ejs", {
         content_error: content,
       });
-      console.log("エラー");
+      console.log(error);
     } else {
       connection.end();
       const connection2 = mysql.createConnection(mysql_setting);
