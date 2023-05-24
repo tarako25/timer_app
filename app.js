@@ -16,17 +16,15 @@ app.listen(3000, () => {
 //Mysql設定
 
 const mysql_setting = {
-  host: "database-1.c26tz3blblk0.ap-northeast-1.rds.amazonaws.com",
-  port:"3306",
-  user:"admin",
-  password:"0423take",
+  host: 'localhost',
+  user: 'root',
+  password: '0423take',
   database: "stop-app-db",
 };
 const mysql_setting2 = {
-  host: "database-1.c26tz3blblk0.ap-northeast-1.rds.amazonaws.com",
-  port:"3306",
-  user:"admin",
-  password:"0423take",
+  host: 'localhost',
+  user: 'root',
+  password: '0423take',
   database: "stop-app-acount",
 };
 //グローバルID
