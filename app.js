@@ -19,13 +19,13 @@ const mysql_setting = {
   host: 'localhost',
   user: 'root',
   password: '0423take',
-  database: "stop-app-db",
+  database: "stop_app_db",
 };
 const mysql_setting2 = {
   host: 'localhost',
   user: 'root',
   password: '0423take',
-  database: "stop-app-acount",
+  database: "stop_app_acount",
 };
 //グローバルID
 
