@@ -8,7 +8,7 @@ app.engine("ejs", ejs.renderFile);
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }));
 
-//heroku用
+
 app.listen(3000, () => {
   console.log("Open Server! URL:http://localhost:3000/");
 });

@@ -190,7 +190,7 @@ button:disabled {
 .edit-mordal {
     opacity: 0; /* 初期値は0にする */
     width: 500px;
-    height: 10%;
+    height: 12%;
     background-color: rgba(255, 255, 255);
     border: solid 1px black;
     position: fixed;
@@ -271,11 +271,12 @@ input[type="time"]::-webkit-calendar-picker-indicator{
         font-size: 3.2rem;
     }
     .databox{
+        width:55%;
         flex-direction: column;
         align-items: center;
     }
     .data{
-        height:400px;
+        height:450px;
     }
     .data-sub{
         margin:-5px 0;
@@ -309,7 +310,7 @@ input[type="time"]::-webkit-calendar-picker-indicator{
         font-size: 1rem;
     }
     .data{
-        height:350px;
+        height:410px;
         margin-bottom:30px;
     }
     .data-sub{
@@ -323,10 +324,10 @@ input[type="time"]::-webkit-calendar-picker-indicator{
         font-size: 2.5rem;
     }
     .databox{
-        width:60%;
+        width:70%;
     }
     .edit-mordal {
-        width:300px;
+        width:400px;
     }
     .canvas-box{
         width:90%;
