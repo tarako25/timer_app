@@ -18,13 +18,13 @@ app.listen(3000, () => {
 const mysql_setting = {
   host: 'localhost',
   user: 'root',
-  password: '0423take',
+  password: '00000000',
   database: "stop_app_db",
 };
 const mysql_setting2 = {
   host: 'localhost',
   user: 'root',
-  password: '0423take',
+  password: '00000000',
   database: "stop_app_acount",
 };
 //グローバルID
